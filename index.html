@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 3 - Matthew Hallac</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="wrapper">
+        <h1>Face Morphing</h1>
+        <h2>Matthew Hallac</h2>
+        <h3>Overview</h3>
+        <p>
+            For this project, I used images to demonstrate transformations and different image operations. I computed the average between two faces, created a morph from one face to another, computed the mean face of a population, and extrapolated from the mean to create a caricature of myself. Enjoy!
+        </p>
+        <h3>Defining Correspondences</h3>
+        <p>
+            The first step required to do more interesting things with the faces is to define correspondences marking specific points on images. I did this using the <a href="https://pypi.org/project/cpselect/">cpselect</a> library in python, and selected control points by hand. Once the faces were labeled, I used a <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation#:~:text=In%20mathematics%20and%20computational%20geometry,triangle%20in%20DT(P).">Delaunay triangluation</a> on the average of two images to generate a triangluation that could be used to compute morphing and other operations between those images. 
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="inputs/obama.jpg"> 
+                <figcaption>
+                    President Obama
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="outputs/obamacorrespondence.jpg"> 
+                <figcaption>
+                    President Obama with correspondences
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="outputs/obamatri.jpg"> 
+                <figcaption>
+                    President Obama triangulation
+                </figcaption>
+            </figure>
+        </div>
+
+        <h3>The Mid-way Face</h3>
+        <p>
+            To find the mid-way face, we have to take the average shape of two faces, warp both faces into that shape, and average the colors together. Here is the average face between President Obama and Taylor Swift:
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="inputs/obama.jpg"> 
+                <figcaption>
+                    President Obama
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="inputs/swift.jpg"> 
+                <figcaption>
+                    Taylor Swift
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="outputs/obamaswift.jpg"> 
+                <figcaption>
+                    Average Face of Obama and Swift
+                </figcaption>
+            </figure>
+        </div>
+        <h3>The Morph Sequence</h3>
+        <p>
+            Instead of calculating the mid-way point between two faces, we can use a weighted average to calculate various points in the morphing sequence. If we calculate the weighted average face for a linear set of weights and play them in sequence, we can create a morph video from one face to another! Here is the transition from Obama to Swift
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="outputs/obamaswiftgif.gif" style="width: 100%;"> 
+        </div>
+
+        <h3>The Mean Face</h3>
+        <p>
+            Given a set of labeled faces, we can warp the shape of each one to the average and then take the average color to find the average face of the population. I did this using <a href="http://www2.imm.dtu.dk/~aam/datasets/datasets.html">this data set</a> of Danish computer scientists. Here is an image of all of the initial faces:
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="outputs/danes.png" style="width: 100%;"> 
+        </div>
+
+        <p>
+            Here are all the faces warped to the same shape:
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="outputs/wdanes.png" style="width: 100%;"> 
+        </div>
+        <p>
+            Finally, here is the average face:
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="outputs/avgdane.jpg" style="width: 100%;"> 
+        </div>
+
+        <h3>Caricatures</h3>
+        <p>
+            If I take the deviations of my face from the mean calculated above and excentuate them, I can create a caricature. Here is a set of caricatures of each of the faces above:
+        </p>
+        <div class="gallery">
+            <figure>
+                <img src="outputs/cdanes.png" style="width: 100%;"> 
+        </div>
+        <h3>Bells and Whistles</h3>
+        <h4>Transitions of the whole class music video</h4>
+        <p>
+            After working with 15 others in the class, we created the video <a href="https://www.youtube.com/watch?v=cDOiJji8E4I&feature=youtu.be"> here </a> by having each student do a transition from their face to the next face. Enjoy!
+        </p>
+        <a href="https://www.youtube.com/watch?v=cDOiJji8E4I&feature=youtu.be"><button class="button">Watch Video</button></a>
+    </div>
+    </body>
+</html>
